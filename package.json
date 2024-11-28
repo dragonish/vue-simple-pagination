@@ -1,5 +1,5 @@
 {
-  "name": "vue-simple-pagination",
+  "name": "@dragonish/vue-simple-pagination",
   "version": "0.1.0",
   "description": "A simple Vue pagination component",
   "private": false,
