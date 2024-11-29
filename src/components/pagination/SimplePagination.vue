@@ -27,7 +27,7 @@
         class="vue-simple-pagination-input"
         type="text"
         :style="{ width: totalPages.toString().length + 2 + 'em' }"
-        @keydown.enter="onSubmit()"
+        @keydown.enter="onEnter"
       />
       <span class="vue-simple-pagination-slash">/</span>
       <span class="vue-simple-pagination-total-pages">{{ totalPages }}</span>
@@ -59,6 +59,7 @@
 <script setup lang="ts" name="SimplePagination">
 import { computed } from 'vue';
 import type { ThemeModeType } from './index';
+import { debounce } from 'lodash-es';
 
 /** Current page number */
 const current = defineModel<number>('current', { default: 1 });
@@ -88,6 +89,17 @@ const totalPages = computed(() => {
   return Math.ceil(props.total / props.size);
 });
 
+const debounced = debounce(
+  () => {
+    onSubmit();
+  },
+  550,
+  {
+    leading: true,
+    trailing: false,
+  }
+);
+
 function onPrev() {
   if (current.value > 1) {
     onSubmit(-1);
@@ -98,6 +110,11 @@ function onNext() {
   if (current.value < totalPages.value) {
     onSubmit(1);
   }
+}
+
+function onEnter() {
+  //* Debounce
+  debounced();
 }
 
 function onSubmit(mod = 0) {
