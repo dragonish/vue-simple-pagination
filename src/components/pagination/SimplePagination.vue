@@ -26,7 +26,7 @@
         v-model.number="current"
         class="vue-simple-pagination-input"
         type="text"
-        :style="{ width: totalPages.toString().length + 3 + 'em' }"
+        :style="{ width: totalPages.toString().length + 2 + 'em' }"
         @keyup.enter="onSubmit()"
       />
       <span class="vue-simple-pagination-slash">/</span>
