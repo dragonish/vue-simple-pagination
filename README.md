@@ -14,17 +14,21 @@ npm install @dragonish/vue-simple-pagination
 
 ## Usage
 
-in `.js`/`.ts` file:
+### Global registration
+
+In the entry file:
 
 ```typescript
+import { createApp } from 'vue';
 import SimplePagination from '@dragonish/vue-simple-pagination';
+import App from './App.vue';
 
-// ...
-app.use(SimplePagination)
-// ...
+const app = createApp(App);
+app.use(SimplePagination);
+app.mount('#app');
 ```
 
-in `.vue` file:
+Example usage:
 
 ```html
 <template>
@@ -36,6 +40,30 @@ in `.vue` file:
 
 <script setup lang="ts">
 import { ref } from 'vue';
+
+const page = ref(1);
+
+function onPageChange(p: number) {
+  console.info('page:', p);
+}
+</script>
+```
+
+### Direct import
+
+Example usage:
+
+```html
+<template>
+  <simple-pagination v-model:current="page" :total="110" :size="25" @change="onPageChange"></simple-pagination>
+  <div>
+    <p>input value: {{ page }}</p>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import { SimplePagination } from '@dragonish/vue-simple-pagination';
 
 const page = ref(1);
 
