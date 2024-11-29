@@ -27,7 +27,7 @@
         class="vue-simple-pagination-input"
         type="text"
         :style="{ width: totalPages.toString().length + 2 + 'em' }"
-        @keyup.enter="onSubmit()"
+        @keydown.enter="onSubmit()"
       />
       <span class="vue-simple-pagination-slash">/</span>
       <span class="vue-simple-pagination-total-pages">{{ totalPages }}</span>
