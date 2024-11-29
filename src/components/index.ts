@@ -1,4 +1,5 @@
 import type { App } from 'vue';
+import type { ThemeModeType } from './pagination/index';
 import SimplePagination from './pagination/SimplePagination.vue';
 
 const components = [SimplePagination];
@@ -10,5 +11,7 @@ function install(app: App) {
 }
 
 export { SimplePagination };
+
+export type { ThemeModeType };
 
 export default { install };

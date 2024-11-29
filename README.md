@@ -82,12 +82,19 @@ function onPageChange(p: number) {
 | `size` | `number` | Number of items per page |
 | `prevTitle` | `string \| undefined` | Previous page's hint |
 | `nextTitle` | `string \| undefined` | Next page's hint |
+| `theme` | `ThemeModeType \| undefined` | Theme mode |
 
 ### Emits
 
 | name | declaration | description |
 | :--: | ----------- | ----------- |
 | `change` | `(page: number) => void` | Page count change event |
+
+### Types
+
+```typescript
+type ThemeModeType = 'auto' | 'light' | 'dark';
+```
 
 ## License
 

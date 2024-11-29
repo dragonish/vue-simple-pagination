@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-simple-pagination-frame">
+  <div class="vue-simple-pagination-frame" :class="'vue-simple-pagination-theme-' + (theme || 'auto')">
     <span
       class="vue-simple-pagination-button vue-simple-pagination-previous"
       :class="{ 'vue-simple-pagination-disabled': current <= 1 }"
@@ -58,6 +58,7 @@
 
 <script setup lang="ts" name="SimplePagination">
 import { computed } from 'vue';
+import type { ThemeModeType } from './index';
 
 /** Current page number */
 const current = defineModel<number>('current', { default: 1 });
@@ -71,6 +72,8 @@ const props = defineProps<{
   prevTitle?: string;
   /** Next page's hint */
   nextTitle?: string;
+  /** Theme mode */
+  theme?: ThemeModeType;
 }>();
 
 const emit = defineEmits<{
@@ -123,7 +126,8 @@ function onSubmit(mod = 0) {
   user-select: none;
 }
 
-.vue-simple-pagination-button.vue-simple-pagination-disabled {
+.vue-simple-pagination-theme-auto .vue-simple-pagination-button.vue-simple-pagination-disabled,
+.vue-simple-pagination-theme-light .vue-simple-pagination-button.vue-simple-pagination-disabled {
   cursor: not-allowed;
   color: rgba(0, 0, 0, 0.25);
 }
@@ -145,24 +149,36 @@ function onSubmit(mod = 0) {
   text-align: center;
   font-size: 1em;
   padding: 0 4px;
-  border: 1px solid #000000;
   border-radius: 4px;
   outline: none;
   color: inherit;
-  background-color: #ffffff;
 }
 input.vue-simple-pagination-input:focus {
   border-color: #213181;
   box-shadow: 0 0 1px 1px #213181;
 }
+.vue-simple-pagination-theme-auto .vue-simple-pagination-input,
+.vue-simple-pagination-theme-light .vue-simple-pagination-input {
+  border: 1px solid #000000;
+  background-color: #ffffff;
+}
+
+.vue-simple-pagination-theme-dark .vue-simple-pagination-input {
+  border: 1px solid #dfdfdf;
+  background-color: #121212;
+}
+
+.vue-simple-pagination-theme-dark .vue-simple-pagination-button.vue-simple-pagination-disabled {
+  color: rgba(255, 255, 255, 0.25);
+}
 
 @media (prefers-color-scheme: dark) {
-  .vue-simple-pagination-input {
+  .vue-simple-pagination-theme-auto .vue-simple-pagination-input {
     border: 1px solid #dfdfdf;
     background-color: #121212;
   }
 
-  .vue-simple-pagination-button.vue-simple-pagination-disabled {
+  .vue-simple-pagination-theme-auto .vue-simple-pagination-button.vue-simple-pagination-disabled {
     color: rgba(255, 255, 255, 0.25);
   }
 }
