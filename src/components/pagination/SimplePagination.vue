@@ -126,9 +126,11 @@ function onSubmit(mod = 0) {
   user-select: none;
 }
 
+.vue-simple-pagination-button.vue-simple-pagination-disabled {
+  cursor: not-allowed;
+}
 .vue-simple-pagination-theme-auto .vue-simple-pagination-button.vue-simple-pagination-disabled,
 .vue-simple-pagination-theme-light .vue-simple-pagination-button.vue-simple-pagination-disabled {
-  cursor: not-allowed;
   color: rgba(0, 0, 0, 0.25);
 }
 
