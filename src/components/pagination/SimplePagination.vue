@@ -114,6 +114,7 @@ function onSubmit(mod = 0) {
 .vue-simple-pagination-frame {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .vue-simple-pagination-button {
